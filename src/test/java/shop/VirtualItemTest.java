@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class VirtualItemTest {
-    private final String expectedMsg = "Class: class shop.VirtualItem; Name: USB; Price: 15.0; Size on disk: 30000.0";
+    private static final String EXPECTED_MSG = "Class: class shop.VirtualItem; Name: USB; Price: 15.0; Size on disk: 30000.0";
 
     @Test
     @DisplayName("Testing that ToString method formats the output correctly ")
@@ -15,6 +15,6 @@ public class VirtualItemTest {
         usb.setName("USB");
         usb.setPrice(15);
         usb.setSizeOnDisk(30000);
-        assertEquals(expectedMsg, usb.toString(),"ToString method is formatted incorrectly in the output");
+        assertEquals(EXPECTED_MSG, usb.toString(),"ToString method is formatted incorrectly in the output");
     }
 }
