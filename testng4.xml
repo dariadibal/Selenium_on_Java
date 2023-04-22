@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite4">
+    <test name="test1" thread-count="4">
+        <classes>
+            <class name="parser.JsonParserTest"/>
+            <class name="shop.VirtualItemTest"/>
+            <class name="shop.RealItemTest"/>
+            <class name="shop.CartTest"/>
+        </classes>
+    </test>
+</suite> <!-- Suite -->
+
+
+
