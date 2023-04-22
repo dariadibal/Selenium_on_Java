@@ -1,57 +1,48 @@
 package parser;
 
-import org.junit.jupiter.api.*;
+import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 import shop.Cart;
 
 import java.io.File;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.testng.Assert.*;
 
 public class JsonParserTest {
     private static File file;
 
-    @BeforeAll
-    public static void fileCreation(){
+    @BeforeSuite(groups = {"happy"})
+    public static void fileCreation() {
         file = new File("src/main/resources/raccoon-cart.json");
     }
 
-    @Tag("happy")
-    @Test
-    @DisplayName("Testing that reading from file is done")
+    @Test(groups = "happy", description = "Testing that reading from file is done")
     public void readFromFile() {
         JsonParser parser = new JsonParser();
         Cart cart = parser.readFromFile((new File("src/main/resources/eugen-cart.json")));
-
-        assertAll(
-                "group assertion for JsonParser read",
-                ()->assertNotNull(cart, "Cart object is not created correctly"),
-                ()->assertEquals(cart.getClass(), Cart.class, "Created class is NOT Cart"),
-                ()->assertEquals("eugen-cart", cart.getCartName(),"Cart is named incorrectly")
-        );
+        SoftAssert assertsoft = new SoftAssert();
+        assertsoft.assertNotNull(cart, "Cart object is not created correctly");
+        assertsoft.assertEquals(cart.getClass(), Cart.class, "Created class is NOT Cart");
+        assertsoft.assertEquals("eugen-cart", cart.getCartName(), "Cart is named incorrectly");
+        assertsoft.assertAll();
     }
 
-    @Tag("negative")
-    @Test
-    @DisplayName("Testing that custom exception is thrown")
+    @Test(groups = "negative", description = "Testing that custom exception is thrown")
     public void exceptionTest() {
         JsonParser parser = new JsonParser();
-        assertThrows(NoSuchFileException.class, () -> parser.readFromFile((new File("raccoons address"))),
-                "Thrown exception is incorrect");
+        assertThrows("Thrown exception is incorrect", NoSuchFileException.class, () -> parser.readFromFile((new File("raccoons address"))));
     }
 
-    @Disabled("due to task 5")
-    @Test
-    @Tag("happy")
-    @DisplayName("Testing that new file is added")
+    @Test(groups = "happy", description = "Testing that new file is added", enabled = false)
     public void writeToFile() {
         JsonParser parser = new JsonParser();
         Cart raccoonCart = new Cart("raccoon-cart");
         parser.writeToFile(raccoonCart);
-        assertTrue(file.exists(),"File is NOT created");
+        assertTrue(file.exists(), "File is NOT created");
     }
 
-    @AfterAll
-    public static void deleteFile (){
+    @AfterSuite(groups = {"happy"})
+    public static void deleteFile() {
         file.delete();
     }
 }
