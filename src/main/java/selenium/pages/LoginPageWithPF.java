@@ -1,24 +1,18 @@
 package selenium.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.By;
 import selenium.Driver;
 import selenium.TestUser;
 
 public class LoginPageWithPF extends BasePage {
-    @FindBy(id = "user-name")
-    private WebElement UsernameInput;
-    @FindBy(id = "password")
-    private WebElement PasswordInput;
-    @FindBy (id = "login-button")
-    private WebElement LoginButton;
+    private By UsernameInput = By.id("user-name");
+    private By PasswordInput = By.id("password");
+    private By LoginButton = By.id("login-button");
 
     private String url = "https://www.saucedemo.com/";
 
     public LoginPageWithPF () {
         this.driver = Driver.getInstance();
-        PageFactory.initElements(this.driver, this);
     }
 
     public void openPage() {
@@ -26,8 +20,8 @@ public class LoginPageWithPF extends BasePage {
     }
 
     public void login (TestUser testUser) {
-        this.UsernameInput.sendKeys(testUser.getUserName());
-        this.PasswordInput.sendKeys(testUser.getPassword());
-        this.LoginButton.click();
+        this.driver.findElement(UsernameInput).sendKeys(testUser.getUserName());
+        this.driver.findElement(PasswordInput).sendKeys(testUser.getPassword());
+        this.driver.findElement(LoginButton).click();
     }
 }

@@ -1,20 +1,17 @@
 package selenium.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.By;
 import selenium.Driver;
 
 public class ProductPageWithPF extends BasePage {
-    @FindBy (className = "title")
-    private WebElement Title;
+
+    private By Title = By.className("title");
 
     public ProductPageWithPF () {
         this.driver = Driver.getInstance();
-        PageFactory.initElements(this.driver, this);
     }
 
     public String getTitle() {
-        return this.Title.getText();
+        return this.driver.findElement(Title).getText();
     }
 }
