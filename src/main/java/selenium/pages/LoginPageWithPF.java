@@ -1,29 +1,24 @@
 package selenium.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import selenium.Properties;
 import selenium.TestUser;
 
 public class LoginPageWithPF extends BasePage {
-    @FindBy(id = "user-name")
-    private WebElement usernameInput;
+    private final By usernameInput = By.id("user-name");
 
-    @FindBy(id = "password")
-    private WebElement passwordInput;
+    private final By passwordInput = By.id("password");
 
-    @FindBy(id = "login-button")
-    private WebElement loginButton;
+    private final By loginButton = By.id("login-button");
 
     public LoginPageWithPF(WebDriver driver) {
         super(driver);
     }
 
     public ProductPageWithPF login(TestUser testUser) {
-        this.usernameInput.sendKeys(testUser.getUserName());
-        this.passwordInput.sendKeys(testUser.getPassword());
-        this.loginButton.click();
+        this.driver.findElement(this.usernameInput).sendKeys(testUser.getUserName());
+        this.driver.findElement(this.passwordInput).sendKeys(testUser.getPassword());
+        this.driver.findElement(this.loginButton).click();
         return new ProductPageWithPF(this.driver);
     }
 }
