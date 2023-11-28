@@ -1,5 +1,6 @@
 package selenium.patterns;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.WebDriver;
 import selenium.Driver;
@@ -13,6 +14,7 @@ public class BaseTest {
         Driver.getInstance().close();
     }
 
+    @Step("Open App")
     protected LoginPageWithPF openApp() {
         WebDriver driver = Driver.getInstance().getDriver();
         driver.get(Properties.LOGIN_URL);

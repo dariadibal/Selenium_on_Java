@@ -1,5 +1,6 @@
 package selenium.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import selenium.TestUser;
@@ -15,6 +16,7 @@ public class LoginPageWithPF extends BasePage {
         super(driver);
     }
 
+    @Step("Login")
     public ProductPageWithPF login(TestUser testUser) {
         this.driver.findElement(this.usernameInput).sendKeys(testUser.getUserName());
         this.driver.findElement(this.passwordInput).sendKeys(testUser.getPassword());

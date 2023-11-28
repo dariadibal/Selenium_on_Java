@@ -2,9 +2,6 @@ package selenium;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
-import static org.openqa.selenium.remote.HttpSessionId.getSessionId;
 
 public final class Driver {
     private static Driver instance;
