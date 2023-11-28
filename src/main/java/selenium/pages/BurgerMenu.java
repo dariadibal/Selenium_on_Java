@@ -1,5 +1,6 @@
 package selenium.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
@@ -19,6 +20,7 @@ public class BurgerMenu extends BasePage {
         super(driver);
     }
 
+    @Step("Logout")
     public LoginPageWithPF logout() throws IOException {
         this.driver.findElement(this.burgerMenu).click();
         Wait<WebDriver> wait = new WebDriverWait(this.driver, ofSeconds(6));

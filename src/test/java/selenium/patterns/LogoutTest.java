@@ -1,8 +1,9 @@
 package selenium.patterns;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.TmsLink;
+import org.junit.jupiter.api.*;
 import selenium.Driver;
 import selenium.TestUser;
 import selenium.pages.BurgerMenu;
@@ -24,6 +25,13 @@ public class LogoutTest extends BaseTest {
 
     @Test
     @DisplayName("Logout test with page factory for saucedemo site")
+    @Description("Logout Test")
+    @Epic("Login / Logout Functionality Epic")
+    @TmsLink("ID-456")
+    @Tags({
+            @Tag("Chrome"),
+            @Tag("118")
+    })
     public void logoutTest() throws IOException {
         LoginPageWithPF loginPage = openApp();
         takeScreenshot("./screenshots/LoginPage1.png");

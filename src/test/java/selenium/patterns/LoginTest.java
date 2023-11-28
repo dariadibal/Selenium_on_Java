@@ -1,9 +1,12 @@
 package selenium.patterns;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import selenium.Screenshot;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.TmsLink;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import selenium.SeleniumTestWatcher;
 import selenium.TestUser;
 import selenium.pages.LoginPageWithPF;
 import selenium.pages.ProductPageWithPF;
@@ -13,6 +16,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static selenium.Screenshot.*;
 
+@ExtendWith(SeleniumTestWatcher.class)
 public class LoginTest extends BaseTest {
     private static final String INVENTORY_URL = "https://www.saucedemo.com/inventory.html";
     private TestUser testUser;
@@ -24,7 +28,15 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Login test with page factory for saucedemo site")
+    @Description("Login Test")
+    @Epic("Login / Logout Functionality Epic")
+    @TmsLink("ID-765")
+    @Tags({
+            @Tag("Chrome"),
+            @Tag("118")
+    })
     public void loginTest() throws IOException {
+        Allure.label("Browser", "Chrome");
         LoginPageWithPF loginPage = openApp();
         takeScreenshot("./screenshots/loginPage.png");
         ProductPageWithPF productPage = loginPage.login(testUser);
