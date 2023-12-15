@@ -6,6 +6,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.TmsLink;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import selenium.SauceTestWatcher;
 import selenium.SeleniumTestWatcher;
 import selenium.TestUser;
 import selenium.pages.LoginPageWithPF;
@@ -16,7 +17,10 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static selenium.Screenshot.*;
 
-@ExtendWith(SeleniumTestWatcher.class)
+@ExtendWith({
+        SeleniumTestWatcher.class,
+        SauceTestWatcher.class
+})
 public class LoginTest extends BaseTest {
     private static final String INVENTORY_URL = "https://www.saucedemo.com/inventory.html";
     private TestUser testUser;
