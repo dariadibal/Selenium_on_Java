@@ -4,7 +4,9 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.TmsLink;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import selenium.Driver;
+import selenium.SauceTestWatcher;
 import selenium.TestUser;
 import selenium.pages.BurgerMenu;
 import selenium.pages.LoginPageWithPF;
@@ -15,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static selenium.Screenshot.takeScreenshot;
 import static selenium.Properties.*;
 
+@ExtendWith(SauceTestWatcher.class)
 public class LogoutTest extends BaseTest {
     private TestUser testUser;
 

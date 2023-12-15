@@ -7,17 +7,17 @@ import selenium.Driver;
 import selenium.Properties;
 import selenium.pages.LoginPageWithPF;
 
-import java.net.MalformedURLException;
+import java.io.IOException;
 
 public class BaseTest {
 
     @AfterEach
-    public void cleanup() {
+    public void cleanup() throws IOException {
         Driver.getInstance().close();
     }
 
     @Step("Open App")
-    protected LoginPageWithPF openApp() throws MalformedURLException {
+    protected LoginPageWithPF openApp() throws IOException {
         WebDriver driver = Driver.getInstance().getDriver();
         driver.get(Properties.LOGIN_URL);
         return new LoginPageWithPF(driver);
